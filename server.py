@@ -13,7 +13,7 @@ wlan.active(True)
 ssid = 'iPhone J'
 password = 'ZZZZZZZZ'
 wlan.connect(ssid, password)
-url = "http://localhost:3000/score"
+url = "http://172.20.10.2:3000/score"
 print(wlan.isconnected())
 
 I2C_ADDR = 0x27
@@ -70,19 +70,21 @@ devices = i2c.scan()
 
 while wlan.isconnected():
     try:
-        print("GET")
         r = urequests.get(url)
         json_response = r.json() # Décompressez la réponse en JSON
-        tableau = json_response["data"]
+        tableau = json_response["score"]
         print(tableau)
         if r.status_code == 200:
             data = r.json()
             lcd.clear()
-            lcd.putstr(str(tableau))
+            lcd.move_to(2,0)
+            lcd.putstr("== Pacman ==")
+            lcd.move_to(3,1)
+            lcd.putstr("Score : "+str(tableau))
         else:
             print("Request failed with status code {}".format(r.status_code))
         r.close()
-        utime.sleep(1)
+        utime.sleep(.3)
     except Exception as e:
         print("Error: {}".format(e))
         lcd.clear()
