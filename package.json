@@ -1,0 +1,26 @@
+{
+  "name": "python-node",
+  "version": "1.0.0",
+  "description": "Ce projet a permis de mettre en lien des components en utilisant du python et un serveur en nodeJs.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node --watch index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/C00MAR/Python-Node.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/C00MAR/Python-Node/issues"
+  },
+  "homepage": "https://github.com/C00MAR/Python-Node#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "http": "^0.0.1-security",
+    "path": "^0.12.7",
+    "socket.io": "^4.6.0"
+  }
+}

@@ -10,7 +10,7 @@ Pour installer et utiliser le projet :
 
 - Vous avez simplement à télécharger le zip
 - Lancer un terminal et exécuter cette commande 
-```cd .\Python-Node.JS``
+```cd .\Python-Node``
 - Puis effectuer
 ```npm install```
 ```pip install pygame```
@@ -21,10 +21,9 @@ Il suffit maintentant d'ouvrir index.html et de commencer une partie
 
 - Technologies utilisées : 
     - Raspberry Pico
-    - 4 boutons 
+    - Un Écran 16x2 LCD I2C
 
 - Langages utilisés : 
     - Python pour le developpement du jeu
     - NodeJs pour la création du serveur
     - HTML pour la création de la page d'accueil 
-    - Sass pour le style des pages 
