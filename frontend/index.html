@@ -1591,10 +1591,10 @@
         if (point.classList.contains("big-point")) {
           makeGhostsScared();
           PacmanScore += 50;
-          UpdateScore('http://localhost:3000/score', PacmanScore);
+          UpdateData(' http://localhost:3000/data', PacmanScore, livesLost);
         } else {
           PacmanScore += 10;
-          UpdateScore('http://localhost:3000/score', PacmanScore);
+          UpdateData(' http://localhost:3000/data', PacmanScore, livesLost);
           if(!sound.src.includes("munch") || sound.paused) {
             sound.src = `https://dominikgorczyca.github.io/Pac-Man/audio/munch.wav`;
             sound.play();
@@ -1717,7 +1717,7 @@
       }, 1000)
       ghostsEaten++;
       PacmanScore += 2 ** ghostsEaten * 100;
-      UpdateScore('http://localhost:3000/score', PacmanScore)
+      UpdateData(' http://localhost:3000/data', PacmanScore, livesLost);
       scoreElement.innerHTML = "Score " + PacmanScore;
     }
     function ghostRetreat(i) {
@@ -1795,6 +1795,7 @@
         }, 1400)
         
         if (livesLost == 3) {
+          UpdateData('http://localhost:3000/data', PacmanScore, livesLost);
           newLevel = true;
           setTimeout(() => {
             start.innerHTML = "Game&nbsp; Over";
@@ -1888,7 +1889,7 @@
     function hardReset() {
     livesLost = 0;
     PacmanScore = 0;
-    UpdateScore('http://localhost:3000/score', PacmanScore)
+    UpdateData(' http://localhost:3000/data', PacmanScore, livesLost)
         setTimeout(() => {
             for (let i = 0; i < 3; i++) {
                 lives.children[i].removeAttribute("style");
@@ -1948,22 +1949,19 @@
         yDown = null;
     };
 
-    
-
-    const UpdateScore = async (url, PacmanScore) => {
+    const UpdateData = async (url, PacmanScore, livesLost) => {
         const response = await fetch(url, {
             method: 'POST',
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({"score" : PacmanScore})
+            body: JSON.stringify({ "score": PacmanScore, "life": livesLost})
         });
-        console.log(response);
         return response.json();
     }
 
-    UpdateScore('http://localhost:3000/score', PacmanScore)
+    UpdateData('http://localhost:3000/data', PacmanScore, livesLost)
         // .then(res => res.json())    
         .then((data) => {
-            console.log(data);
+            console.log(livesLost)
             console.log(PacmanScore)
         })
         .catch((error) => {

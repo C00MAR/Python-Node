@@ -72,19 +72,27 @@ while wlan.isconnected():
     try:
         r = urequests.get(url)
         json_response = r.json() # Décompressez la réponse en JSON
-        tableau = json_response["score"]
-        print(tableau)
+        score = json_response["score"]
+        life = 3 - json_response["life"]
+        print("Score : "+str(score))
+        print("Life : "+str(life))
         if r.status_code == 200:
-            data = r.json()
+            if json_response["life"] == 4:
+                lcd.clear()
+                lcd.move_to(4,0)
+                lcd.putstr("GAME")
+                lcd.move_to(4,1)
+                lcd.putstr("OVER")
+                utime.sleep(1)
             lcd.clear()
-            lcd.move_to(2,0)
-            lcd.putstr("== Pacman ==")
+            lcd.move_to(0,0)
+            lcd.putstr("= Pacman Vie:"+str(life)+" =")
             lcd.move_to(3,1)
-            lcd.putstr("Score : "+str(tableau))
+            lcd.putstr("Score:"+str(score))
         else:
             print("Request failed with status code {}".format(r.status_code))
         r.close()
-        utime.sleep(.3)
+        utime.sleep(.5)
     except Exception as e:
         print("Error: {}".format(e))
         lcd.clear()

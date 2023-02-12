@@ -17,6 +17,7 @@ const io = new Server(httpServer, {
 
 
 let PacmanScore = "0";
+let PacmanLife = "3";
 
 // app.use((req, res, next) => {
 //     res.header("Access-Control-Allow-Origin", "http://127.0.0.1:3000");
@@ -40,20 +41,25 @@ app.post('/', (req, res) => {
     res.json(req.body);
 });
 
-app.get('/score', (req, res) => {
+app.get('/data', (req, res) => {
     res.send({
-    "score": PacmanScore,
+        "score": PacmanScore,
+        "life": PacmanLife
     });
 });
 
-app.post('/score', (req,res) => {
+app.post('/data', (req,res) => {
     PacmanScore = req.body.score
-    res.send({"PacmanScore":req.body.score,})
+    PacmanLife = req.body.life
+    res.send({
+        "score":PacmanScore,
+        "life":PacmanLife
+    });
 })  
 
 
 
 
 httpServer.listen(port, () => {
-    console.log(`Server started on http://localhost:${port}`);
+    console.log(`Server started on http://192.168.1.30:${port}`);
 });
