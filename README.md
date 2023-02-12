@@ -27,3 +27,6 @@ Il suffit maintentant d'ouvrir index.html et de commencer une partie
     - Python pour le developpement du jeu
     - NodeJs pour la création du serveur
     - HTML pour la création de la page d'accueil 
+
+
+https://youtube.com/shorts/Jf5aktc0s_U
